@@ -26,17 +26,15 @@ func featureUserValidation(suite bdd.Suiter) {
 
 	suite.Feature("User validation").
 		Scenario("Request profile").
-
 		Given("A valid user token", func() {
 			token = VALID_TOKEN
+			suite.Log("Some log from suite")
 		}).
-
 		When("The user request his profile info", func() {
 			profile = fetchUserInfo(token)
 		}).
-
 		Then("the profile got is valid", func(assertion *bdd.Assertions) {
-			assertion.NotNil(profile, "user profile is nil")
+			assertion.Nil(profile, "user profile is nil")
 			assertion.Equal(USER_INFO.Email, profile.Email)
 			//assertion.NotEqual(USER_INFO.Plan, profile.Plan)
 		})

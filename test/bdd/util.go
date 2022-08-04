@@ -48,3 +48,11 @@ func parseHtmlReport(tpl string, data interface{}) string {
 
 	return buf.String()
 }
+
+func _errorString(msgAndArgs []interface{}) string {
+	buf := bytes.NewBufferString("")
+	for _, val := range msgAndArgs {
+		buf.WriteString(fmt.Sprintf("%v ", val))
+	}
+	return buf.String()
+}
