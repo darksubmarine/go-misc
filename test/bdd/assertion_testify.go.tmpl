@@ -1,0 +1,4 @@
+{{.CommentWithoutT "a"}}
+func (a *Assertions) {{.DocInfo.Name}}({{.Params}}) {
+    a._e(a.assert.{{.DocInfo.Name}}({{.ForwardedParams}}), "{{.DocInfo.Name}}", _errorString(msgAndArgs))
+}

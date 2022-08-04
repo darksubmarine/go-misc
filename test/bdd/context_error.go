@@ -19,5 +19,8 @@ func (e *ContextErr) Err() error {
 }
 
 func (e *ContextErr) Error() string {
-	return fmt.Sprintf("assertion=%s error=%s", e.assertFn, e.err)
+	if e.err == "" {
+		return fmt.Sprintf("assertion=%s", e.assertFn)
+	}
+	return fmt.Sprintf("assertion=%s %s", e.assertFn, e.err)
 }
