@@ -56,7 +56,7 @@ func featureShoppingCart(suite bdd.Suiter) {
 		Then("I forgot the juice",
 			func(assertion *bdd.Assertions) {
 				for _, item := range mustHave {
-					assertion.True(shoppingCart[item])
+					assertion.True(shoppingCart[item], "expected item", item)
 				}
 			})
 }

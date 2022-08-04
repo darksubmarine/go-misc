@@ -10,6 +10,13 @@ type Suiter interface {
 	TierDown(fn func()) *suiteStep
 	Feature(name string) *featureStep
 	Run()
+
+	Log(args ...any)
+	Error(args ...any)
+	Errorf(format string, args ...any)
+	Fail()
+	FailNow()
+	Setenv(key, value string)
 }
 
 type suiteStep struct {
@@ -80,4 +87,28 @@ func (s *suiteStep) Feature(name string) *featureStep {
 
 	s.features = append(s.features, feature)
 	return feature
+}
+
+func (s *suiteStep) Log(args ...any) {
+	s.t.Log(args...)
+}
+
+func (s *suiteStep) Error(args ...any) {
+	s.t.Error(args...)
+}
+
+func (s *suiteStep) Errorf(format string, args ...any) {
+	s.t.Errorf(format, args...)
+}
+
+func (s *suiteStep) Fail() {
+	s.t.Fail()
+}
+
+func (s *suiteStep) FailNow() {
+	s.t.FailNow()
+}
+
+func (s *suiteStep) Setenv(key, value string) {
+	s.t.Setenv(key, value)
 }
